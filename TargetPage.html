@@ -234,6 +234,9 @@ var o2 = 1;
 var o3 = 0;
 
 var table = $(".tables tbody");
+  
+    $('.tables').dataTable().fnClearTable();
+    $('.tables').dataTable().fnDestroy();
 $.ajax({
         url: 'https://dandbportal.azurewebsites.net/user/GetTop10PerformersPrimary',
         method: "GET",

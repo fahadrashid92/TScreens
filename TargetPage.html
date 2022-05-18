@@ -337,6 +337,9 @@ setInterval(function() {
     console.log(reloadthis);
     location.reload();
   }  */
+  
+    $('.tables').dataTable().fnClearTable();
+    $('.tables').dataTable().fnDestroy();
   if(o1 == 1)
   {
     $('#Departmenttxt').text("Off-Plan");

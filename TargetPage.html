@@ -140,10 +140,32 @@
           </div>
         </div>
         <!--------------------------------------->
-        <!--------------------------------------->
-        <div class="row" style="background-color: #EDF4FD;margin-left: 5px; margin-right: 5px; height: 49%; border-radius: 20px;">
-          <div class="col-md-12">
-            <iframe id="promo" width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLWFdlhAG_KGOIoSrtli25_Fhi2l3YXZPF&amp;loop=1&amp;autoplay=1" title="YouTube video player" allow="autoplay;" allowfullscreen></iframe>
+        <!----------------------------------style="background-color: #EDF4FD;margin-left: 5px; margin-right: 5px; height: 49%; border-radius: 20px;"style="background-color: #EDF4FD;margin-left: 5px; margin-right: 5px; height: 49%; border-radius: 20px;"----->
+        <div class="row">
+          <div class="col-md-8" style="flex: 0 0 65%; background-color: #EDF4FD;width:95%;height: 49vh; border-radius: 20px; margin-left: 10px;">
+            <iframe id="promo" width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLmkFqVsE9jtcc6bP7Th7D4JHafpM4Brd9&amp;loop=1&amp;autoplay=1" title="YouTube video player" allow="autoplay;" allowfullscreen></iframe>
+          </div>
+          <div class="col-md-4" style="background-color: #EDF4FD; height: 49vh; border-radius: 20px;margin-left: 5px;">
+            <div class="row">
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-10">
+                <center><h3 style="background-color: #0B0B45;color: #EDF4FD; border-radius: 0px 0px 10px 10px;"><strong><i>Last Month's Winner</i></strong></h3></center>
+              </div>
+              <div class="col-md-1">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <center>
+                  <div class="box1" style="margin-top: 20px;">
+                    <img src="./assets/img/gold.png" class="img1" alt="Avatar" style="height:100%;width:100%;">
+                    <img src="./assets/img/behere.gif" id="OffPlanTopMiller1AgentImageLastMonth" class="img2" alt="Avatar" style="height:190px;width:190px;border-radius: 50%;">
+                  </div>
+                  <div><h3 style="color: #0B0B45; margin-top: 5px;"><strong><i id="OffPlanTopMiller1AgentNameLastMonth"></i></strong></h3></div>
+                </center>
+              </div>
+            </div>
           </div>
         </div>
         <!--------------------------------------->
@@ -234,9 +256,6 @@ var o2 = 1;
 var o3 = 0;
 
 var table = $(".tables tbody");
-  
-    $('.tables').dataTable().fnClearTable();
-    $('.tables').dataTable().fnDestroy();
 $.ajax({
         url: 'https://dandbportal.azurewebsites.net/user/GetTop10PerformersPrimary',
         method: "GET",
@@ -246,7 +265,7 @@ $.ajax({
             $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
             $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
             $.each(data, function (a, b) {
-                table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
+              table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
                     "<td><i><strong>"+b.Name+"</strong></i></td></tr>");
                     if(b.Rank == 1)
                     {
@@ -280,6 +299,30 @@ $.ajax({
             $(".tables").DataTable({"ordering": false,searching: false, paging: false, info: false,"bDestroy": true});
         }
     });
+
+    $.ajax({
+        url: 'https://dandbportal.azurewebsites.net/user/GetTop1PerformersPrimaryLastMonth',
+        method: "GET",
+        success: function (data) {
+            $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+            $.each(data, function (a, b) {
+              if(b.Rank == 1)
+                {
+                  if(b.Name != null)
+                  {
+                    $("#OffPlanTopMiller1AgentNameLastMonth").text(b.Name);
+                  }
+                  if(b.Photo != null)
+                  {
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src",b.Photo);
+                  }else{
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+                  }
+                }
+            });
+        }
+    });
+
 var SalesDealsCountThisMonth = 0;
 var LeasingDealsCountThisMonth = 0;
 var OffPlanDealsCountThisMonth = 0;
@@ -338,7 +381,7 @@ setInterval(function() {
     location.reload();
   }  */
   
-    $('.tables').dataTable().fnClearTable();
+  $('.tables').dataTable().fnClearTable();
     $('.tables').dataTable().fnDestroy();
   if(o1 == 1)
   {
@@ -364,7 +407,7 @@ setInterval(function() {
             $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
             $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
             $.each(data, function (a, b) {
-                table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
+              table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
                     "<td><i><strong>"+b.Name+"</strong></i></td></tr>");
                     if(b.Rank == 1)
                     {
@@ -396,6 +439,28 @@ setInterval(function() {
             });
  
             $(".tables").DataTable({"ordering": false,searching: false, paging: false, info: false,"bDestroy": true});
+        }
+    });
+    $.ajax({
+        url: 'https://dandbportal.azurewebsites.net/user/GetTop1PerformersPrimaryLastMonth',
+        method: "GET",
+        success: function (data) {
+            $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+            $.each(data, function (a, b) {
+              if(b.Rank == 1)
+                {
+                  if(b.Name != null)
+                  {
+                    $("#OffPlanTopMiller1AgentNameLastMonth").text(b.Name);
+                  }
+                  if(b.Photo != null)
+                  {
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src",b.Photo);
+                  }else{
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+                  }
+                }
+            });
         }
     });
     o1 = 0;
@@ -421,10 +486,94 @@ setInterval(function() {
         url: 'https://dandbportal.azurewebsites.net/user/GetTop10PerformersSecondary',
         method: "GET",
         success: function (data) {
-            table.empty();
             $("#OffPlanTopMiller1AgentImage").attr("src","./assets/img/behere.gif");
             $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
             $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
+            table.empty();
+            $.each(data, function (a, b) {
+              table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
+                    "<td><i><strong>"+b.Name+"</strong></i></td></tr>");
+                    if(b.Rank == 1)
+                    {
+                      if(b.Photo != null)
+                      {
+                        $("#OffPlanTopMiller1AgentImage").attr("src",b.Photo);
+                      }else{
+                        $("#OffPlanTopMiller1AgentImage").attr("src","./assets/img/behere.gif");
+                      }
+                    }
+                    if(b.Rank == 2)
+                    {
+                      if(b.Photo != null)
+                      {
+                        $("#OffPlanTopMiller2AgentImage").attr("src",b.Photo);
+                      }else{
+                        $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
+                      }
+                    }
+                    if(b.Rank == 3)
+                    {
+                      if(b.Photo != null)
+                      {
+                        $("#OffPlanTopMiller3AgentImage").attr("src",b.Photo);
+                      }else{
+                        $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
+                      }
+                    }
+            });
+ 
+            $(".tables").DataTable({"ordering": false,searching: false, paging: false, info: false,"bDestroy": true});
+        }
+    });
+    $.ajax({
+        url: 'https://dandbportal.azurewebsites.net/user/GetTop1PerformersSecondaryLastMonth',
+        method: "GET",
+        success: function (data) {
+            $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+            $.each(data, function (a, b) {
+              if(b.Rank == 1)
+                {
+                  if(b.Name != null)
+                  {
+                    $("#OffPlanTopMiller1AgentNameLastMonth").text(b.Name);
+                  }
+                  if(b.Photo != null)
+                  {
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src",b.Photo);
+                  }else{
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+                  }
+                }
+            });
+        }
+    });
+    o3 = 1;
+    o2 = 0;
+    sleep(1000);
+  }
+  if(o3 == 1)
+  {
+    $('#Departmenttxt').text("Leasing");
+    $('#lastmonthDeals').hide();
+    $('#lastmonthDeals').text(LeasingDealsCountLastMonth);
+    $('#lastmonthDeals').fadeIn(1000);
+    $('#thismonthDeals').hide();
+    $('#thismonthDeals').text(LeasingDealsCountThisMonth);
+    $('#thismonthDeals').fadeIn(1000);
+    $('.rankingList').hide();
+    $('.rankingList').fadeIn(1000);
+    $('.box1').hide();
+    $('.box1').fadeIn(1000);
+    $('.tables').dataTable().fnClearTable();
+    $('.tables').dataTable().fnDestroy();
+    $.ajax({
+        url: 'https://dandbportal.azurewebsites.net/user/GetTop10PerformersLeasing',
+        method: "GET",
+        success: function (data) {
+            $("#OffPlanTopMiller1AgentImage").attr("src","./assets/img/behere.gif");
+            $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
+            $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
+            table.empty();
             $.each(data, function (a, b) {
                 table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
                     "<td><i><strong>"+b.Name+"</strong></i></td></tr>");
@@ -460,66 +609,26 @@ setInterval(function() {
             $(".tables").DataTable({"ordering": false,searching: false, paging: false, info: false,"bDestroy": true});
         }
     });
-    o3 = 1;
-    o2 = 0;
-    sleep(1000);
-  }
-  if(o3 == 1)
-  {
-    $('#Departmenttxt').text("Leasing");
-    $('#lastmonthDeals').hide();
-    $('#lastmonthDeals').text(LeasingDealsCountLastMonth);
-    $('#lastmonthDeals').fadeIn(1000);
-    $('#thismonthDeals').hide();
-    $('#thismonthDeals').text(LeasingDealsCountThisMonth);
-    $('#thismonthDeals').fadeIn(1000);
-    $('.rankingList').hide();
-    $('.rankingList').fadeIn(1000);
-    $('.box1').hide();
-    $('.box1').fadeIn(1000);
-    $('.tables').dataTable().fnClearTable();
-    $('.tables').dataTable().fnDestroy();
     $.ajax({
-        url: 'https://dandbportal.azurewebsites.net/user/GetTop10PerformersLeasing',
+        url: 'https://dandbportal.azurewebsites.net/user/GetTop1PerformersLeasingLastMonth',
         method: "GET",
         success: function (data) {
-            table.empty();
-            $("#OffPlanTopMiller1AgentImage").attr("src","./assets/img/behere.gif");
-            $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
-            $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
+            $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
             $.each(data, function (a, b) {
-                table.append("<tr><td><i><strong>"+b.Rank+"</strong></i></td>" +
-                    "<td><i><strong>"+b.Name+"</strong></i></td></tr>");
-                    if(b.Rank == 1)
-                    {
-                      if(b.Photo != null)
-                      {
-                        $("#OffPlanTopMiller1AgentImage").attr("src",b.Photo);
-                      }else{
-                        $("#OffPlanTopMiller1AgentImage").attr("src","./assets/img/behere.gif");
-                      }
-                    }
-                    if(b.Rank == 2)
-                    {
-                      if(b.Photo != null)
-                      {
-                        $("#OffPlanTopMiller2AgentImage").attr("src",b.Photo);
-                      }else{
-                        $("#OffPlanTopMiller2AgentImage").attr("src","./assets/img/behere.gif");
-                      }
-                    }
-                    if(b.Rank == 3)
-                    {
-                      if(b.Photo != null)
-                      {
-                        $("#OffPlanTopMiller3AgentImage").attr("src",b.Photo);
-                      }else{
-                        $("#OffPlanTopMiller3AgentImage").attr("src","./assets/img/behere.gif");
-                      }
-                    }
+              if(b.Rank == 1)
+                {
+                  if(b.Name != null)
+                  {
+                    $("#OffPlanTopMiller1AgentNameLastMonth").text(b.Name);
+                  }
+                  if(b.Photo != null)
+                  {
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src",b.Photo);
+                  }else{
+                    $("#OffPlanTopMiller1AgentImageLastMonth").attr("src","./assets/img/behere.gif");
+                  }
+                }
             });
- 
-            $(".tables").DataTable({"ordering": false,searching: false, paging: false, info: false,"bDestroy": true});
         }
     });
     o3 = 0;
